@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { TextInput, View, Text } from "react-native";
-import JsBarcode from "jsbarcode";
-import Svg, { Path, Rect } from "react-native-svg";
 import tw from "twrnc";
 import Barcode from "./Barcode";
+import BarcodeType from "react-native-barcode-svg";
 export default function BarcodeGenerator() {
   const [barcodeText, setBarcodeText] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const barcodeRef = useRef<BarcodeType>(null);
+  console.log(barcodeRef?.current);
   return (
     <View style={tw`flex justify-center items-center`}>
       <Text
@@ -25,15 +26,18 @@ export default function BarcodeGenerator() {
         placeholder="Enter text to generate barcode"
         placeholderTextColor={tw.color("stone-500/50")}
         style={[
-          tw`border border-purple-500 text-lg  m-3 p-3 rounded-full`,
+          tw`border border-purple-500 text-lg  m-3 p-3 rounded-full w-80`,
           isFocused && tw`border-2 border-purple-700`,
         ]}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         value={barcodeText}
         onChangeText={setBarcodeText}
+        maxLength={50}
       />
-      {barcodeText && <Barcode barcodeText={barcodeText} />}
+      {barcodeText !== "" && (
+        <Barcode barcodeText={barcodeText} ref={barcodeRef} />
+      )}
     </View>
   );
 }
