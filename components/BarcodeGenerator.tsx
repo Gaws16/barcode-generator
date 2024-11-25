@@ -8,6 +8,9 @@ export default function BarcodeGenerator() {
   const [isFocused, setIsFocused] = useState(false);
   const barcodeRef = useRef<BarcodeType>(null);
   console.log(barcodeRef?.current);
+  const saveBarcode = () => {
+    
+  }
   return (
     <View style={tw`flex justify-center items-center`}>
       <Text
@@ -36,7 +39,7 @@ export default function BarcodeGenerator() {
         maxLength={50}
       />
       {barcodeText !== "" && (
-        <Barcode barcodeText={barcodeText} ref={barcodeRef} />
+        <Barcode barcodeText={barcodeText} ref={barcodeRef} handleSave={saveBarcode} />
       )}
     </View>
   );

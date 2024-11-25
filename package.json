@@ -19,7 +19,8 @@
     "react-native-fs": "^2.20.0",
     "react-native-share": "^11.1.0",
     "react-native-web": "~0.19.13",
-    "twrnc": "^4.6.0"
+    "twrnc": "^4.6.0",
+    "expo-file-system": "~18.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
